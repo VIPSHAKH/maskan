@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Manzilingiz - Urganch IT-PARK</span>
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-bell notification"></i>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Restoran, taom, maskanlarni qidirin">
+        <i class="fas fa-ellipsis-v"></i>
+    </div>
+
+    <!-- Banner Section -->
+    <div class="banner">
+        <h2>Bu yerda sizning reklamingiz bo'lishi mumkin</h2>
+        <button>Order now</button>
+    </div>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h3>Kategoriya</h3>
+        <div class="category-list">
+            <div class="category" data-category="restoranlar">
+                <img src="assets/img/restoran.png" alt="Restoranlar">
+                <span>Restoranlar</span>
+                <span class="all">Barchasi</span>
+            </div>
+            <div class="category" data-category="fastfood">
+                <img src="assets/img/fastfood.png" alt="FastFood">
+                <span>FastFood</span>
+                <span class="all">Barchasi</span>
+            </div>
+            <div class="category" data-category="oromgoh">
+                <img src="assets/img/oromgoh.png" alt="Oromgoh">
+                <span>Oromgoh</span>
+                <span class="all">Barchasi</span>
+            </div>
+            <div class="category" data-category="shifoxona">
+                <img src="assets/img/shifo.png" alt="Shifoxona">
+                <span>Shifoxona</span>
+                <span class="all">Barchasi</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Places Section -->
+    <section class="featured">
+        <h3>Eng dolzarb</h3>
+        <div class="place-grid">
+            <div class="place-card">
+                <img src="assets/img/metan.png" alt="METAN - Qadam ota">
+                <h4>METAN - Qadam ota</h4>
+                <p>200 m</p>
+                <p>4.8 ★ reviews</p>
+            </div>
+            <div class="place-card">
+                <img src="assets/img/feedup.png" alt="FeedUp - Urganch">
+                <h4>FeedUp - Urganch</h4>
+                <p>500 m</p>
+                <p>4.8 ★ reviews</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Bar -->
+    <nav class="navigation">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Asosiy</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Kategoriya</span>
+        </div>
+        <div class="nav-item" id="map-trigger">
+            <i class="fas fa-map-marker"></i>
+            <span>Xarita</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Sevimlili</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Hisob</span>
+        </div>
+    </nav>
+
+    <!-- Map Container (hidden by default) -->
+    <div id="map" style="display: none; height: 100vh; width: 100%; position: fixed; top: 0; left: 0; z-index: 1000;"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
