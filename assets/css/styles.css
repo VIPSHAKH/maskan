@@ -166,13 +166,13 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95); /* Slight transparency for visibility */
+    background-color: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
     border-top: 1px solid #000;
-    z-index: 1001; /* Ensure it stays above map */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    z-index: 1001;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 .nav-item {
     text-align: center;
@@ -193,7 +193,9 @@ header {
 /* Map Styles */
 #map {
     z-index: 1000;
-    height: calc(100vh - var(--nav-height)); /* Adjust height to account for navigation bar */
+    height: calc(100vh - var(--nav-height));
+    width: 100%;
+    background-color: #f0f0f0; /* Debugging: Show a background if map fails to load */
 }
 .leaflet-popup-content {
     text-align: center;

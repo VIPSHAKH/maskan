@@ -10,11 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function initMap(lat, lng, categoryFilter = null) {
         if (map) map.remove(); // Clean up existing map instance
         map = L.map('map').setView([lat, lng], 13);
+        console.log('Map initialized at:', lat, lng);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        try {
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        } catch (e) {
+            console.error('Failed to add tile layer:', e);
+            alert('Xarita yuklanmadi. Internet aloqasini tekshiring. (Map failed to load. Check your internet connection.)');
+            return;
+        }
 
         // Add user marker
         userMarker = L.marker([lat, lng]).addTo(map)
@@ -41,33 +48,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const url = `https://overpass-api.de/api/interpreter?data=[out:json];${query}out;`;
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                data.elements.forEach(element => {
-                    const { lat, lon, tags } = element;
-                    const name = tags.name || 'Noma\'lum joy';
-                    const type = tags.amenity || 'Noma\'lum';
-
-                    const marker = L.marker([lat, lon]).addTo(map);
-                    const popupContent = `
-                        <strong>${name}</strong><br>
-                        Type: ${type}<br>
-                        Distance: ${Math.round(calculateDistance(lat, lon, userLat, userLng))} m
-                    `;
-                    const popup = L.popup().setContent(popupContent);
-
-                    // Hover functionality
-                    marker.on('mouseover', () => popup.openOn(map));
-                    marker.on('mouseout', () => popup.remove());
-
-                    // Click functionality to keep popup open
-                    marker.on('click', (e) => {
-                        e.originalEvent.stopPropagation();
-                        popup.openOn(map);
-                    });
-                });
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
             })
-            .catch(error => console.error('Ma\'lumotlarni olishda xatolik:', error));
+            .then(data => {
+                console.log('Fetched data:', data);
+                if (data.elements && data.elements.length > 0) {
+                    data.elements.forEach(element => {
+                        const { lat, lon, tags } = element;
+                        const name = tags.name || 'Noma\'lum joy';
+                        const type = tags.amenity || 'Noma\'lum';
+
+                        const marker = L.marker([lat, lon]).addTo(map);
+                        const popupContent = `
+                            <strong>${name}</strong><br>
+                            Type: ${type}<br>
+                            Distance: ${Math.round(calculateDistance(lat, lon, userLat, userLng))} m
+                        `;
+                        const popup = L.popup().setContent(popupContent);
+
+                        // Hover functionality
+                        marker.on('mouseover', () => popup.openOn(map));
+                        marker.on('mouseout', () => popup.remove());
+
+                        // Click functionality to keep popup open
+                        marker.on('click', (e) => {
+                            e.originalEvent.stopPropagation();
+                            popup.openOn(map);
+                        });
+                    });
+                } else {
+                    console.warn('No nearby places found.');
+                    L.marker([lat, lng + 0.01]).addTo(map) // Fallback marker
+                        .bindPopup('Yaqin joylar topilmadi. (No nearby places found.)')
+                        .openPopup();
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching places:', error);
+                alert('Yaqin joylarni yuklashda xatolik yuz berdi. Xarita faqat joylashuvingiz bilan ko\'rsatiladi. (Error loading nearby places. Map shows only your location.)');
+            });
     }
 
     // Function to calculate distance (Haversine formula)
@@ -109,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.banner').style.display = 'none';
             document.querySelector('.categories').style.display = 'none';
             document.querySelector('.featured').style.display = 'none';
-            // Removed: document.querySelector('.navigation').style.display = 'none';
             mapContainer.style.display = 'block';
         } else {
             if (map) map.remove();
@@ -120,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.banner').style.display = 'block';
             document.querySelector('.categories').style.display = 'block';
             document.querySelector('.featured').style.display = 'block';
-            // Removed: document.querySelector('.navigation').style.display = 'flex';
         }
     }
 
@@ -131,9 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 position => {
                     userLat = position.coords.latitude;
                     userLng = position.coords.longitude;
+                    console.log('User location:', userLat, userLng);
                     initMap(userLat, userLng, categoryFilter);
                 },
                 error => {
+                    console.error('Geolocation error:', error);
                     alert('Joylashuvingizni aniqlash mumkin emas. Standart koordinatalar ishlatiladi. (Unable to retrieve your location. Using default coordinates.)');
                     userLat = 41.5586;
                     userLng = 60.6071; // Default to Urganch, Uzbekistan
@@ -154,12 +175,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMapVisibility(false);
         }
     });
-});
-
-document.querySelectorAll('.nav-item').forEach(item => {
-    if (item !== mapTrigger) {
-        item.addEventListener('click', () => {
-            toggleMapVisibility(false);
-        });
-    }
 });
