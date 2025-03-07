@@ -4,6 +4,7 @@
     --text-color: #000;
     --secondary-text-color: #666;
     --background-color: #fff;
+    --nav-height: 60px; /* Define navigation bar height */
 }
 
 /* Global Styles */
@@ -16,7 +17,7 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
-    padding-bottom: 60px; /* Space for fixed navigation */
+    padding-bottom: var(--nav-height); /* Space for fixed navigation */
 }
 
 /* Header */
@@ -106,7 +107,7 @@ header {
     text-align: center;
     margin-right: 20px;
     min-width: 80px;
-    cursor: pointer; /* Add cursor for interactivity */
+    cursor: pointer;
 }
 .category img {
     width: 60px;
@@ -165,17 +166,18 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95); /* Slight transparency for visibility */
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
     border-top: 1px solid #000;
     z-index: 1001; /* Ensure it stays above map */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
 }
 .nav-item {
     text-align: center;
     color: var(--secondary-text-color);
-    cursor: pointer; /* Add cursor for interactivity */
+    cursor: pointer;
 }
 .nav-item i {
     font-size: 1.5rem;
@@ -191,6 +193,7 @@ header {
 /* Map Styles */
 #map {
     z-index: 1000;
+    height: calc(100vh - var(--nav-height)); /* Adjust height to account for navigation bar */
 }
 .leaflet-popup-content {
     text-align: center;

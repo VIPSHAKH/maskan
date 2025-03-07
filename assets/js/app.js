@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Click functionality to keep popup open
                     marker.on('click', (e) => {
-                        e.originalEvent.stopPropagation(); // Prevent event from bubbling to mapContainer
+                        e.originalEvent.stopPropagation();
                         popup.openOn(map);
                     });
                 });
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.banner').style.display = 'none';
             document.querySelector('.categories').style.display = 'none';
             document.querySelector('.featured').style.display = 'none';
-            document.querySelector('.navigation').style.display = 'none';
+            // Removed: document.querySelector('.navigation').style.display = 'none';
             mapContainer.style.display = 'block';
         } else {
             if (map) map.remove();
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.banner').style.display = 'block';
             document.querySelector('.categories').style.display = 'block';
             document.querySelector('.featured').style.display = 'block';
-            document.querySelector('.navigation').style.display = 'flex';
+            // Removed: document.querySelector('.navigation').style.display = 'flex';
         }
     }
 
@@ -154,4 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMapVisibility(false);
         }
     });
+});
+
+document.querySelectorAll('.nav-item').forEach(item => {
+    if (item !== mapTrigger) {
+        item.addEventListener('click', () => {
+            toggleMapVisibility(false);
+        });
+    }
 });
