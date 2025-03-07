@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header>
+    <header id="header">
         <div class="location">
             <i class="fas fa-map-marker-alt"></i>
             <span>Manzilingiz - Urganch IT-PARK</span>
@@ -20,132 +20,141 @@
     </header>
 
     <!-- Search Bar -->
-    <div class="search-bar">
+    <div class="search-bar" id="search-bar">
         <i class="fas fa-search"></i>
         <input type="text" placeholder="Restoran, taom, maskanlarni qidirin">
         <i class="fas fa-ellipsis-v"></i>
     </div>
 
-    <!-- Banner Section -->
-    <div class="banner">
-        <h2>Bu yerda sizning reklamingiz bo'lishi mumkin</h2>
-        <button>Order now</button>
-    </div>
+    <!-- Main Section (Asosiy) -->
+    <section id="main-section">
+        <div class="banner">
+            <h2>Bu yerda sizning reklamingiz bo'lishi mumkin</h2>
+            <button>Order now</button>
+        </div>
+        <section class="categories">
+            <h3>Kategoriya</h3>
+            <div class="category-list">
+                <div class="category" data-category="restoranlar">
+                    <img src="assets/img/restoran.png" alt="Restoranlar">
+                    <span>Restoranlar</span>
+                    <span class="all">Barchasi</span>
+                </div>
+                <div class="category" data-category="fastfood">
+                    <img src="assets/img/fastfood.png" alt="FastFood">
+                    <span>FastFood</span>
+                    <span class="all">Barchasi</span>
+                </div>
+                <div class="category" data-category="oromgoh">
+                    <img src="assets/img/oromgoh.png" alt="Oromgoh">
+                    <span>Oromgoh</span>
+                    <span class="all">Barchasi</span>
+                </div>
+                <div class="category" data-category="shifoxona">
+                    <img src="assets/img/shifo.png" alt="Shifoxona">
+                    <span>Shifoxona</span>
+                    <span class="all">Barchasi</span>
+                </div>
+            </div>
+        </section>
+        <section class="featured">
+            <h3>Eng dolzarb</h3>
+            <div class="place-grid">
+                <div class="place-card">
+                    <img src="assets/img/metan.png" alt="METAN - Qadam ota">
+                    <h4>METAN - Qadam ota</h4>
+                    <p>200 m</p>
+                    <p>4.8 ★ reviews</p>
+                </div>
+                <div class="place-card">
+                    <img src="assets/img/feedup.png" alt="FeedUp - Urganch">
+                    <h4>FeedUp - Urganch</h4>
+                    <p>500 m</p>
+                    <p>4.8 ★ reviews</p>
+                </div>
+            </div>
+        </section>
+    </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h3>Kategoriya</h3>
-        <div class="category-list">
-            <div class="category" data-category="restoranlar">
-                <img src="assets/img/restoran.png" alt="Restoranlar">
-                <span>Restoranlar</span>
-                <span class="all">Barchasi</span>
+    <!-- Catalog Section (Kategoriya) -->
+    <section id="catalog-section" style="display: none;">
+        <h2>Kategoriyalar</h2>
+        <div class="catalog-list">
+            <div class="catalog-item">
+                <img src="assets/img/fastfood.png" alt="Pizza">
+                <h3>Pizza</h3>
+                <p>Delicious pizzas with various toppings.</p>
             </div>
-            <div class="category" data-category="fastfood">
-                <img src="assets/img/fastfood.png" alt="FastFood">
-                <span>FastFood</span>
-                <span class="all">Barchasi</span>
+            <div class="catalog-item">
+                <img src="assets/img/restoran.png" alt="Burgers">
+                <h3>Burgers</h3>
+                <p>Juicy burgers made fresh.</p>
             </div>
-            <div class="category" data-category="oromgoh">
-                <img src="assets/img/oromgoh.png" alt="Oromgoh">
-                <span>Oromgoh</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="shifoxona">
-                <img src="assets/img/shifo.png" alt="Shifoxona">
-                <span>Shifoxona</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="restoranlar">
-                <img src="assets/img/restoran.png" alt="Restoranlar">
-                <span>Restoranlar</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="fastfood">
-                <img src="assets/img/fastfood.png" alt="FastFood">
-                <span>FastFood</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="oromgoh">
-                <img src="assets/img/oromgoh.png" alt="Oromgoh">
-                <span>Oromgoh</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="shifoxona">
-                <img src="assets/img/shifo.png" alt="Shifoxona">
-                <span>Shifoxona</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="oromgoh">
-                <img src="assets/img/oromgoh.png" alt="Oromgoh">
-                <span>Oromgoh</span>
-                <span class="all">Barchasi</span>
-            </div>
-            <div class="category" data-category="shifoxona">
-                <img src="assets/img/shifo.png" alt="Shifoxona">
-                <span>Shifoxona</span>
-                <span class="all">Barchasi</span>
+            <div class="catalog-item">
+                <img src="assets/img/shifo.png" alt="Drinks">
+                <h3>Drinks</h3>
+                <p>Refreshing beverages.</p>
             </div>
         </div>
     </section>
 
-    <!-- Featured Places Section -->
-    <section class="featured">
-        <h3>Eng dolzarb</h3>
-        <div class="place-grid">
-            <div class="place-card">
+    <!-- Map Section (Xarita) -->
+    <section id="map-section" style="display: none;">
+        <div id="map" style="height: calc(100vh - var(--nav-height)); width: 100%;"></div>
+    </section>
+
+    <!-- Favorites Section (Sevimlili) -->
+    <section id="favorites-section" style="display: none;">
+        <h2>Sevimlilar</h2>
+        <div class="favorites-list">
+            <div class="favorite-item">
                 <img src="assets/img/metan.png" alt="METAN - Qadam ota">
-                <h4>METAN - Qadam ota</h4>
-                <p>200 m</p>
-                <p>4.8 ★ reviews</p>
+                <h3>METAN - Qadam ota</h3>
+                <p>Added on: Oct 20, 2023</p>
             </div>
-            <div class="place-card">
+            <div class="favorite-item">
                 <img src="assets/img/feedup.png" alt="FeedUp - Urganch">
-                <h4>FeedUp - Urganch</h4>
-                <p>500 m</p>
-                <p>4.8 ★ reviews</p>
+                <h3>FeedUp - Urganch</h3>
+                <p>Added on: Oct 21, 2023</p>
             </div>
-            <div class="place-card">
-                <img src="assets/img/metan.png" alt="METAN - Qadam ota">
-                <h4>METAN - Qadam ota</h4>
-                <p>200 m</p>
-                <p>4.8 ★ reviews</p>
-            </div>
-            <div class="place-card">
-                <img src="assets/img/feedup.png" alt="FeedUp - Urganch">
-                <h4>FeedUp - Urganch</h4>
-                <p>500 m</p>
-                <p>4.8 ★ reviews</p>
-            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section (Hisob) -->
+    <section id="profile-section" style="display: none;">
+        <h2>Hisob</h2>
+        <div class="profile-info">
+            <img src="assets/img/oromgoh.png" alt="Profile Picture" class="profile-pic">
+            <h3>John Doe</h3>
+            <p>Email: john.doe@example.com</p>
+            <p>Phone: +998 99 123 45 67</p>
+            <button>Edit Profile</button>
         </div>
     </section>
 
     <!-- Navigation Bar -->
     <nav class="navigation">
-        <div class="nav-item active">
+        <div class="nav-item active" data-section="main-section">
             <i class="fas fa-home"></i>
             <span>Asosiy</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-section="catalog-section">
             <i class="fas fa-th-large"></i>
             <span>Kategoriya</span>
         </div>
-        <div class="nav-item" id="map-trigger">
+        <div class="nav-item" data-section="map-section" id="map-trigger">
             <i class="fas fa-map-marker"></i>
             <span>Xarita</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-section="favorites-section">
             <i class="fas fa-heart"></i>
             <span>Sevimlili</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-section="profile-section">
             <i class="fas fa-user"></i>
             <span>Hisob</span>
         </div>
     </nav>
-
-    <!-- Map Container (hidden by default) -->
-    <div id="map" style="display: none; position: fixed; top: 0; left: 0; z-index: 1000;"></div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
